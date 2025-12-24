@@ -125,9 +125,10 @@ En Render Dashboard → tu servicio → pestaña **"Logs"**
 
 ## 📝 Notas Importantes
 
-- ✅ El puerto 8080 se detecta automáticamente desde el Dockerfile
-- ✅ No necesitas configurar nada más en Render
-- ✅ Los datos ya están en Render (27 socios + todos los registros)
+- ✅ El puerto se configura dinámicamente desde la variable PORT de Render
+- ✅ Configuración SSL incluida para PostgreSQL en Render
+- ✅ Los datos ya están en Render (tablas creadas + 27 socios + todos los registros)
+- ✅ spring.jpa.hibernate.ddl-auto=validate para proteger datos existentes
 - ⚠️ Plan Free: app se suspende tras 15 min inactivo
 - ⚠️ Primera carga tras suspensión: 30-60 segundos
 

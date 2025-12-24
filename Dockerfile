@@ -28,12 +28,13 @@ WORKDIR /app
 # Copiar el JAR compilado desde la etapa de build
 COPY --from=build /app/target/*.jar app.jar
 
-# Exponer el puerto 8080 (puerto por defecto de Spring Boot)
+# Exponer el puerto (Render usa la variable PORT)
 EXPOSE 8080
 
 # Variables de entorno por defecto
 ENV SPRING_PROFILES_ACTIVE=prod
-ENV JAVA_OPTS="-Xms256m -Xmx512m"
+ENV JAVA_OPTS="-Xms256m -Xmx512m -Djava.security.egd=file:/dev/./urandom"
 
 # Ejecutar la aplicación
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
+# Render establece la variable PORT automáticamente
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -Dserver.port=${PORT:-8080} -jar app.jar"]
